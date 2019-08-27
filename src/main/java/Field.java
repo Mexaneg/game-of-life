@@ -1,14 +1,19 @@
 import java.util.*;
 
 public class Field implements Cloneable {
-    private int xSize = 10;
-    private int ySize = 10;
+    private int xSize;
+    private int ySize;
     private ArrayList<ArrayList<Integer>> field = new ArrayList();
 
+    public Field(int x, int y, ArrayList<ArrayList<Integer>> input) {
+        this.xSize = x;
+        this.ySize = y;
+        this.field = input;
+    }
     public Field(int x, int y) {
         this.xSize = x;
         this.ySize = y;
-        for (int i = 0; i < xSize; i++){
+        for (int i = 0; i < xSize; i++) {
             ArrayList<Integer> arr = new ArrayList<>();
             for (int j = 0; j < ySize; j++) {
                 arr.add(0);
@@ -17,13 +22,22 @@ public class Field implements Cloneable {
         }
     }
 
-    public Integer getValue(int i,int j) {
+    public Integer getValue(int i, int j) {
         return field.get(j).get(i);
     }
 
     public void setValue(int i, int j, Integer value) {
         try {
-           field.get(j).set(i,value);
+            field.get(j).set(i, value);
+
+        } catch (Exception e) {
+            System.out.print("");
+        }
+    }
+
+    public void setValue(int i, List<Integer> value) {
+        try {
+            field.set(i, (ArrayList<Integer>) value);
 
         } catch (Exception e) {
             System.out.print("");
@@ -35,7 +49,7 @@ public class Field implements Cloneable {
         StringBuilder s = new StringBuilder();
         for (int i = 0; i < xSize; i++) {
             for (int j = 0; j < ySize; j++) {
-                s.append(" ").append(this.getValue(i,  j));
+                s.append(" ").append(this.getValue(i, j));
             }
             s.append("\n");
 
