@@ -10,6 +10,7 @@ public class Field implements Cloneable {
         this.ySize = y;
         this.field = input;
     }
+
     public Field(int x, int y) {
         this.xSize = x;
         this.ySize = y;
@@ -20,6 +21,18 @@ public class Field implements Cloneable {
             }
             field.add(arr);
         }
+    }
+
+    public ArrayList<ArrayList<Integer>> getField() {
+        return field;
+    }
+
+    public int getySize() {
+        return ySize;
+    }
+
+    public int getxSize() {
+        return xSize;
     }
 
     public Integer getValue(int i, int j) {

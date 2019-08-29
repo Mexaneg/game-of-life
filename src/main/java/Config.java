@@ -1,26 +1,5 @@
-import com.fasterxml.jackson.annotation.*;
-
 import java.util.*;
 
-class Inner {
-    private ArrayList<Integer> integerArrayList;
-
-    @JsonCreator
-    public Inner(final ArrayList<Integer> integerArrayList) {
-        this.integerArrayList = integerArrayList;
-    }
-
-    public ArrayList<Integer> getIntegerArrayList() {
-        return integerArrayList;
-    }
-
-    @Override
-    public String toString() {
-        return "Inner{" +
-                "intlist=" + integerArrayList +
-                '}';
-    }
-}
 
 public class Config {
     private int xSize;
@@ -46,16 +25,46 @@ public class Config {
         return ySize;
     }
 
-    public void setField(ArrayList<Inner> data) {
-        this.field = data;
-    }
-
     public ArrayList<ArrayList<Integer>> getField() {
         ArrayList<ArrayList<Integer>> data = new ArrayList();
         for (int i = 0; i < this.field.size(); i++) {
             data.add(field.get(i).getIntegerArrayList());
         }
         return data;
+    }
+
+    public void setField(ArrayList<ArrayList<Integer>> field) {
+        ArrayList<Inner> data = new ArrayList();
+
+        for (int i = 0; i < field.size(); i++) {
+            Inner in = new Inner(field.get(i));
+            data.add(in);
+
+        }
+        this.field = data;
+    }
+}
+
+class Inner {
+    private ArrayList<Integer> integerArrayList;
+
+    public Inner(final ArrayList<Integer> integerArrayList) {
+        this.integerArrayList = integerArrayList;
+    }
+
+    public ArrayList<Integer> getIntegerArrayList() {
+        return integerArrayList;
+    }
+
+    public void setIntegerArrayList(ArrayList<Integer> integerArrayList) {
+        this.integerArrayList = integerArrayList;
+    }
+
+    @Override
+    public String toString() {
+        return "Inner{" +
+                "intlist=" + integerArrayList +
+                '}';
     }
 }
 
